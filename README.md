@@ -1,56 +1,78 @@
-# Mangalam Landing Page - Documentation
+# Mangalam Landing Page - Technical Documentation
 
-This document provides a technical overview and maintenance guide for the Mangalam Landing Page project.
-
-## Project Overview
-The project involved a complete rebranding and visual overhaul of a landing page for HDPE Pipes & Fittings. Key focus and implementation areas include:
-- **Branding**: Full transition from "Vectus" to "Mangalam".
-- **Navigation**: Customized Sticky Navbar with a primary focus on ease of contact.
-- **Hero Section**: Premium product showcase with interactive zoom and a brand trust banner.
-- **Footer**: A detailed, 4-column custom footer implemented as per design specifications.
-
-## Technical Stack
-- **Structure**: Vanilla HTML5 (Semantic tags).
-- **Styling**: Vanilla CSS3 (Custom Variables/Tokens, Fluid Layouts).
-- **Interaction**: Vanilla JavaScript (ES6+).
-- **Icons**: Font Awesome 6.4.0.
-- **Typography**: Google Fonts (Urbanist for Headings, Inter for Body).
-
-## Key Features
-
-### 1. Interactive Hero Carousel
-- Uses JS to handle thumbnail switching and navigation.
-- Includes a **MouseMove Zoom** feature on the main product image for a premium "e-commerce" feel.
-
-### 2. Sticky Headers
-- **Main Navbar**: Becomes sticky with a shadow effect after scrolling past the hero section (700px threshold).
-- **Sub-Nav**: Remains sticky below the main navbar for quick access to internal sections (Features, Specs, etc.).
-
-### 3. Responsive Design
-- Fully optimized for Mobile (up to 768px), Tablet (up to 1200px), and Desktop.
-- Navigation links and grid layouts adjust automatically for smaller screens.
-
-## File Structure & Documentation
-The codebase is heavily documented using a standardized block-comment format for ease of maintenance:
-
-- `index.html`: Contains the page structure, from Branding Metadata to the Site Footer.
-- `styles.css`: Defined using CSS Variables for colors and spacing. Organized by section:
-  - `Variables` -> `Reset` -> `Layout` -> `Section-specific styles` -> `Responsive Media Queries`.
-- `script.js`: Handles DOM event listeners and UI logic (Carousel, FAQ, Form, Sticky Header).
-
-## Maintenance Guide
-
-### Updating Images
-- Replace files in the `/assets/images/` directory.
-- Update `index.html` `src` attributes or `script.js` image mappings if filenames change.
-
-### Changing Branding Colors
-- Modify the CSS Variables in `:root` inside `styles.css`:
-  - `--primary-blue`: Main brand identity color.
-  - `--secondary-blue`: Active elements and highlight color.
-
-### Editing Links
-- Navbar and Footer links are currently using `#` placeholders. Update these with absolute or relative URLs as per your sitemap.
+This guide provides a comprehensive technical overview, architectural breakdown, and maintenance instructions for the Mangalam Landing Page. 
 
 ---
-*Handover completed on March 4, 2026*
+
+## 1. Project Overview
+The landing page for **Mangalam** is a high-performance, single-page website focused on showcasing premium HDPE Pipes & Fittings. Developed with a pixel-perfect approach, it ensures brand consistency across all device sizes while maintaining high performance.
+
+### Key Branding Pillars
+- **Authority**: Highlighting certifications (ISO, BIS, CE) and trusted global partnerships.
+- **Reliability**: Emphasizing 50+ year service life and chemical resistance.
+- **Precision**: Professional technical specs and quality-focused manufacturing process.
+
+---
+
+## 2. Technical Stack
+- **HTML5**: Semantic structure for SEO and Accessibility.
+- **CSS3**: Variables-based (Tokens) design system with hybrid Grid/Flexbox layouts.
+- **JavaScript**: Vanilla ES6+ for all interactive components.
+- **Icons & Fonts**: Font Awesome 6.4 | Google Fonts (Urbanist & Inter).
+
+---
+
+## 3. Component Deep Dive
+
+### 3.1. Navigation Header
+- **Layout**: 3-column flex layout (Logo | Navigation | CTA).
+- **Behavior**: Smooth transitions when the `.sticky-down` class is toggled via scroll events.
+
+### 3.2. Interactive Product Carousel
+- **Zoom Capabilities**: Precise cursor-tracking zoom achieved by calculating local bounding dimensions in JS and updating `transform-origin` dynamically.
+- **Lazy Swap**: Image transitions utilize a 150ms opacity fade to ensure smooth visual updates.
+
+### 3.3. Custom Footer (Figma-Matched)
+- **Architecture**: A complex **CSS Grid** structure with named areas for better responsive control.
+- **Responsive Transitions**: Shifts from 4-columns (Desktop) to 2-columns (Tablet) and finally 1-column (Mobile).
+
+---
+
+## 4. Advanced UI/UX Patterns
+
+### 4.1. Intelligent Navigation
+- **Dual-Layer Sticky Headers**: 
+  - Main Navigation appears after a 700px scroll threshold.
+  - Sub-Navigation docks below the main header for internal section jumping.
+- **Active State Tracking**: Links automatically highlight based on the user's scroll position.
+
+### 4.2. Lead Generation System
+- **Mock Form Integration**: Fully styled "Request a Quote" form with real-time UI feedback (spinners, success checks).
+
+---
+
+## 5. Maintenance & Customization
+
+### 5.1. Design System (CSS Variables)
+Modify global properties in `styles.css` under the `:root` pseudo-class:
+```css
+--primary-blue: #1C2B59;    /* Corporate Identity */
+--secondary-blue: #2E50C0;  /* Call to Actions */
+--radius-lg: 16px;          /* Global corner rounding */
+```
+
+### 5.2. Updating Images & Media
+- Store all assets in the `/assets/images/` directory.
+- Update `index.html` `src` attributes or `script.js` image mappings if filenames change.
+
+### 5.3. Scroll Logic
+- To adjust the sticky header trigger, modify the `scrollThreshold` constant in `script.js`.
+
+---
+
+## 6. Local Development & Deployment
+1. **Local Access**: Open `index.html` in any modern browser. No build steps required.
+2. **Deployment**: Upload the root directory to any static hosting provider.
+
+---
+*Last Updated: March 5, 2026*
